@@ -1,17 +1,19 @@
 <template>
   <div>
-    <h1>Hello World</h1>
+    <the-header title="My Library"></the-header>
     <stored-resources :resources="storedResources"></stored-resources>
   </div>
 </template>
 
 <script>
   import StoredResources from './components/dev-resources/StoredResources.vue';
+  import TheHeader from './components/layouts/TheHeader.vue';
 
   export default {
     name: 'App',
     components: {
       StoredResources,
+      TheHeader,
     },
     data() {
       return {
