@@ -1,5 +1,5 @@
 <template>
-  <div class="border">
+  <div>
     <h1>Hello World</h1>
     <stored-resources :resources="storedResources"></stored-resources>
   </div>
