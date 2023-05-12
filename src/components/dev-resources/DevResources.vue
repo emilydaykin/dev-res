@@ -1,9 +1,9 @@
 <template>
-  <li class="border-2 border-blue-100 mx-6 my-5 px-4 py-3 rounded-lg shadow-md">
+  <li>
     <base-card>
       <header class="flex items-center justify-between">
         <h3 class="font-bold">{{ title }}</h3>
-        <base-button>Delete</base-button>
+        <base-button additionalStyling="border-red-100 text-red-500 hover:bg-red-100">Delete</base-button>
       </header>
       <p>{{ description }}</p>
       <nav class="mt-2">

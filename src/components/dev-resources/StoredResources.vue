@@ -14,7 +14,7 @@
   import DevResources from './DevResources.vue';
 
   export default {
-    props: ['resources'],
+    inject: ['resources'], // inject them instead of passing them as props
     components: {
       DevResources,
     },
