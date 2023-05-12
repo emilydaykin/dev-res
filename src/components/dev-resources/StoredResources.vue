@@ -1,5 +1,5 @@
 <template>
-  <ul class="w-9/12 m-auto">
+  <ul class="w-9/12 mx-auto max-w-3xl">
     <dev-resources
       v-for="resource in resources"
       v-bind:key="resource.id"

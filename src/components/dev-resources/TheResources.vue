@@ -4,7 +4,10 @@
     <base-button @click="setSelectedTab('stored-resources')" :additionalStyling="storedResButtonMode">Stored Resources</base-button>
     <base-button @click="setSelectedTab('add-resource')" :additionalStyling="addResButtonMode">Add Resource</base-button>
   </div>
-  <component :is="selectedTab"></component>
+  <!-- this (keep-alive) caches the component, so that the data won't be lost! -->
+  <keep-alive> 
+    <component :is="selectedTab"></component>
+  </keep-alive>
 </template>
 
 <script>
@@ -19,7 +22,7 @@ export default {
   data() {
     return {
       selectedTab: 'stored-resources',
-      buttonStyling: 'font-bold py-3 px-6 border-4 border-violet-100 text-violet-500 hover:bg-violet-100',
+      buttonStyling: 'font-bold py-3 px-6 border-4 border-violet-100 hover:bg-violet-100',
       storedResources: [
         {
           id: 1,
@@ -57,21 +60,32 @@ export default {
   provide() {
     return {
       resources: this.storedResources, // this provides the resources to all child components
+      addResource: this.addResource // not executing the function, just passing (adding) the reference (the _inject_ executes the function)
     };
   },
   computed: {
     storedResButtonMode() {
-      return this.selectedTab === 'stored-resources' ? this.buttonStyling + ' bg-violet-100' : this.buttonStyling;
+      return this.selectedTab === 'stored-resources' ? this.buttonStyling + ' bg-violet-100 text-violet-500' : this.buttonStyling + ' text-violet-400';
     },
     addResButtonMode() {
-      return this.selectedTab === 'add-resource' ? this.buttonStyling + ' bg-violet-100' : this.buttonStyling;
+      return this.selectedTab === 'add-resource' ? this.buttonStyling + ' bg-violet-100 text-violet-500' : this.buttonStyling + ' text-violet-400';
     }
   },
   methods: {
     setSelectedTab(tab) {
       this.selectedTab = tab;
-      console.log(tab)
     },
+    addResource(title, description, link) {
+      const newResource = {
+        id: new Date().toISOString(),
+        title: title,
+        description: description,
+        link: link,
+      }
+      // unshift to add the new resource to the beginning of the array
+      this.storedResources.unshift(newResource);
+      this.selectedTab = 'stored-resources';
+    }
   }
 }
 </script>
