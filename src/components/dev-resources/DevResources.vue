@@ -3,11 +3,7 @@
     <base-card>
       <header class="flex items-center justify-between">
         <h3 class="font-bold">{{ title }}</h3>
-        <button
-          class="border py-2 px-4 rounded-md border-red-200 text-red-700 hover:bg-red-100 transition"
-        >
-          Delete
-        </button>
+        <base-button>Delete</base-button>
       </header>
       <p>{{ description }}</p>
       <nav class="mt-2">
