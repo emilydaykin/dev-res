@@ -26,7 +26,7 @@
         <input id="link" name="link" type="url" ref="linkInput" class="border-2 border-blue-200 px-3 py-2 rounded" />
       </div>
       <div class="flex justify-center">
-        <base-button type="submit" class="font-bold py-3 px-6 border-4 border-violet-200 hover:bg-violet-200 w-3/5">Add Resource</base-button>
+        <base-button type="submit" class="font-bold py-3 px-6 border-4 border-violet-200 hover:bg-violet-200 sm:w-3/5">Add Resource</base-button>
       </div>
     </form>
   </base-card>
