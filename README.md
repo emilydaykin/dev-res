@@ -1,5 +1,22 @@
 # Development Resources App
-A web app built with Vue.js and styled with Tailwind that lets users store and add learning, development or technology resources.
+A responsive web app built with Vue.js and styled with Tailwind that lets users store, add and delete learning, development or technology resources.
+
+<p align="center">
+  <img src="public/readme_media/web_storedRes.png" width="90%"  />
+</p>
+
+<p align="center">
+  <img src="public/readme_media/web_addRes.png" width="90%"  />
+</p>
+
+<p align="center">
+  <img src="public/readme_media/error_modal.png" width="90%"  />
+</p>
+
+<p align="center">
+  <img src="public/readme_media/mobile_storedRes.png" width="40%"  />
+  <img src="public/readme_media/mobile_addRes.png" width="40.85%"  />
+</p>
 
 ## Project setup
 
