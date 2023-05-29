@@ -60,7 +60,8 @@ export default {
   provide() {
     return {
       resources: this.storedResources, // this provides the resources to all child components
-      addResource: this.addResource // not executing the function, just passing (adding) the reference (the _inject_ executes the function)
+      addResource: this.addResource, // not executing the function, just passing (adding) the reference (the _inject_ executes the function)
+      deleteResource: this.removeResource
     };
   },
   computed: {
@@ -85,6 +86,15 @@ export default {
       // unshift to add the new resource to the beginning of the array
       this.storedResources.unshift(newResource);
       this.selectedTab = 'stored-resources';
+    },
+    removeResource(resId) {
+      // ----- Default way (also git copilot way). WON'T WORK!!! ❗️ ----- //
+      // ----- because of the way the inject works. this is actually ---- //
+      // ----- a brand new array that _DOESN'T get passed/injected_ ----- //
+      // this.storedResources = this.storedResources.filter(res => res.id !== resId); 
+      // ---------------------------------------------------------------- //
+      const resIndex = this.storedResources.findIndex(res => res.id === resId); // index of resource we wanna delete
+      this.storedResources.splice(resIndex, 1); // remove just that 1 element at the index
     }
   }
 }
