@@ -1,6 +1,6 @@
 <!-- main entry point of our resources area -->
 <template>
-  <div class="flex justify-between w-96 mx-auto mb-8">
+  <div class="flex items-center sm:justify-between flex-col sm:flex-row sm:w-96 mx-auto mb-8">
     <base-button @click="setSelectedTab('stored-resources')" :additionalStyling="storedResButtonMode">Stored Resources</base-button>
     <base-button @click="setSelectedTab('add-resource')" :additionalStyling="addResButtonMode">Add Resource</base-button>
   </div>
@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       selectedTab: 'stored-resources',
-      buttonStyling: 'font-bold py-3 px-6 border-4 border-violet-100 hover:bg-violet-100',
+      buttonStyling: 'w-fit font-bold py-3 px-6 border-4 border-violet-100 hover:bg-violet-100 mb-3 last-of-type:mb-0 sm:mb-0',
       storedResources: [
         {
           id: 1,
