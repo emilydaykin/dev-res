@@ -35,3 +35,45 @@ A web app built with Vue.js and styled with Tailwind that lets users store and a
 // in main.js
 import './style.css'
 ``` 
+
+## Learnings:
+- `<teleport to="body"></teleport>` allows you to reorganise the DOM (if you have an `absolute`-positioned component for example)
+- `provide` and `inject` can be used instead of props to pass data along
+  ```javascript
+  // $StoredResources.vue
+  export default {
+    inject: ['resources'],
+  }
+
+  // $TheResources.vue
+  export default {
+    // data() {
+    //   return {
+    //     storedResources: [
+    //       ...
+    //     ]
+    //   }
+    // },
+    provide() {
+      return {
+        resources: this.storedResources, // this provides the resources to all child components
+      };
+    }
+  }
+  ```
+- (Component names should be more than 1 word long. `Resources.vue` &rarr; `TheResources.vue`)
+- Slots:
+  ```html
+  <slot name="actions"></slot>
+  <slot></slot> // = <slot name="default"></slot>
+  ```
+    - If more than one slot (say *n* slots), slot names must be given to *n-1* slots (the one without the name gets the name "default")
+    - One way to name slots(above), but two ways to 'call' the slot:
+    ```html
+    <template #default></template>
+    <template #actions></template>
+    // or
+    <template v-slot:actions></template>
+    ```
+- `<keep-alive></keep-alive>` "holds onto" the component, so that the data won't be lost when toggling between states (e.g. between the Stored Resources tab and the Add Resource tab)
+- How to add opacity to a colour in tailwind: `bg-zinc-800/[.8]`
