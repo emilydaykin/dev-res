@@ -3,7 +3,7 @@
   <!-- "teleport to body" brings this to the end of the body (so that it's not randomly jumbled in the DOM) -->
   <teleport to="body">
     <div class="bg-zinc-800/[.8] h-full w-full fixed top-0" @click="$emit('close')"></div>
-    <dialog open class="border-2 rounded-lg p-16 fixed top-1/4 font-sans">
+    <dialog open class="border-2 rounded-lg p-16 fixed top-1/4 mx-12 sm:mx-auto font-sans">
       <header>
         <slot name="header">
           <h2 class="text-lg uppercase text-red-600 font-bold text-center mb-4">{{ title }}</h2>
