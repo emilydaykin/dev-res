@@ -1,4 +1,15 @@
 <template>
+  <base-dialog v-if="inputIsInvalid" title="Invalid Input" @close="confirmError">
+    <template #default>
+      <p>At least one input is invalid/empty.</p>
+      <p>Please make sure you fill all the fields.</p>
+    </template>
+    <template v-slot:actions>
+      <base-button @click="confirmError" class="border-2 border-slate-400 hover:bg-slate-300">
+        Okay
+      </base-button>
+    </template>
+  </base-dialog>
   <div class="w-9/12 mx-auto">
     <base-card class="max-w-3xl mx-auto">
     <form class="p-12" @submit.prevent="submitData">
@@ -23,18 +34,33 @@
 </template>
 
 <script>
+import BaseButton from "../UI/BaseButton.vue";
+import BaseDialog from "../UI/BaseDialog.vue";
+
 export default {
+  components: { BaseDialog, BaseButton },
   inject: ['addResource'],
+  data() {
+    return {
+      inputIsInvalid: false
+    }
+  },
   methods: {
     submitData() {
       const enteredTitle = this.$refs.titleInput.value;
-      console.log('enteredTitle ', enteredTitle)
       const enteredDescription = this.$refs.descriptionInput.value;
-      console.log('enteredDescription ', enteredDescription)
       const enteredLink = this.$refs.linkInput.value;
-      console.log('enteredLink ', enteredLink)
+
+      if (enteredTitle.trim() === '' || enteredDescription.trim() === '' || enteredLink.trim() === '') {
+        // alert('Please enter all required fields!');
+        this.inputIsInvalid = true;
+        return;
+      }
 
       this.addResource(enteredTitle, enteredDescription, enteredLink)
+    },
+    confirmError() {
+      this.inputIsInvalid = false;
     }
   }
 }
