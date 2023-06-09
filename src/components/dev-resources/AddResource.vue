@@ -58,6 +58,11 @@ export default {
       }
 
       this.addResource(enteredTitle, enteredDescription, enteredLink)
+      
+      // These need to be added because the keep-alive caches the component EVEN after submitting.
+      this.$refs.titleInput.value = ''
+      this.$refs.descriptionInput.value = ''
+      this.$refs.linkInput.value = ''
     },
     confirmError() {
       this.inputIsInvalid = false;

@@ -17,21 +17,20 @@
   </div>
   
   <!-- this (keep-alive) caches the component, so that the data won't be lost! -->
-  <!-- <router-view v-slot="{selectedTab}"> -->
-    <!-- <keep-alive>  -->
-      <router-view>
-      
+  <router-view v-slot="{ Component }">
+    <keep-alive exclude="AddResource"> 
+        <component :is="Component" />
+        </keep-alive>
       </router-view>
-    <!-- </keep-alive> -->
 </template>
 
 <script>
-// import AddResource from "./AddResource.vue";
+import AddResource from "./AddResource.vue";
 // import StoredResources from "./StoredResources.vue";
 
 export default {
   components: {
-    // AddResource,
+    AddResource, // added here to exclude it from the keep-alive
     // StoredResources
   },
   data() {
