@@ -1,7 +1,10 @@
 <template>
   <div>
     <the-header title="My Library"></the-header>
-    <the-resources></the-resources>
+    <the-resources />
+    <!-- <router-view>
+    </router-view> -->
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 
