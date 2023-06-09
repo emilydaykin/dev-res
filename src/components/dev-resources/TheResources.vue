@@ -1,9 +1,6 @@
 <!-- main entry point of our resources area -->
 <template>
-  
   <div class="flex items-center sm:justify-between flex-col sm:flex-row sm:w-96 mx-auto mb-8">
-    <!-- <base-button @click="setSelectedTab('stored-resources')" :additionalStyling="storedResButtonMode">Stored Resources</base-button> -->
-    <!-- <base-button @click="setSelectedTab('add-resource')" :additionalStyling="addResButtonMode">Add Resource</base-button> -->
     <router-link to="/stored-resources">
       <base-button :additionalStyling="storedResButtonMode">
         Stored Resources
@@ -15,27 +12,23 @@
       </base-button>
     </router-link>
   </div>
-  
-  <!-- this (keep-alive) caches the component, so that the data won't be lost! -->
   <router-view v-slot="{ Component }">
+    <!-- this (keep-alive) caches the component, so that the data won't be lost! -->
     <keep-alive exclude="AddResource"> 
-        <component :is="Component" />
-        </keep-alive>
-      </router-view>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
 </template>
 
 <script>
 import AddResource from "./AddResource.vue";
-// import StoredResources from "./StoredResources.vue";
 
 export default {
   components: {
-    AddResource, // added here to exclude it from the keep-alive
-    // StoredResources
+    AddResource, // added here to exclude it from the keep-alive. Or else wouldn't have needed it (it's being passed in via routes in main.js)
   },
   data() {
     return {
-      // selectedTab: 'stored-resources',
       buttonStyling: 'w-fit font-bold py-3 px-6 border-4 border-violet-100 hover:bg-violet-100 mb-3 last-of-type:mb-0 sm:mb-0',
       storedResources: [
         {
@@ -80,7 +73,6 @@ export default {
   },
   computed: {
     storedResButtonMode() {
-      // console.log('this.$router.currentRoute.value.path:---', this.$router.currentRoute.value.path);
       return this.$router.currentRoute.value.path === '/stored-resources' ? this.buttonStyling + ' bg-violet-100 text-violet-500' : this.buttonStyling + ' text-violet-400';
     },
     addResButtonMode() {
@@ -88,9 +80,6 @@ export default {
     }
   },
   methods: {
-    // setSelectedTab(tab) {
-    //   this.selectedTab = tab;
-    // },
     addResource(title, description, link) {
       const newResource = {
         id: new Date().toISOString(),
@@ -101,7 +90,6 @@ export default {
       // unshift to add the new resource to the beginning of the array
       this.storedResources.unshift(newResource);
       this.$router.push('/stored-resources');
-      // this.selectedTab = 'stored-resources';
     },
     removeResource(resId) {
       // ----- Default way (also git copilot way). WON'T WORK!!! ❗️ ----- //
